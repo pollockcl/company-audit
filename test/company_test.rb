@@ -26,10 +26,16 @@ class CompanyTest < Minitest::Test
     assert @company.employees.all?(&employees)
   end
 
-  # def test_load_projects_method
-  #   @company.load_projects('./data/projects.csv')
+  def test_load_projects_method
+    success  = ->(element) { element[:success] }
+    projects = ->(element) { element.is_a?(Project) }
+    file     = './data/projects.csv'
 
-  # end
+    assert @company.load_projects(file).all?(&success)
+    assert_equal 3, @company.projects.size
+    assert @company.projects.all?(&projects)
+
+  end
 
   # def test_load_timesheets_method
   #   @company.load_timesheets('./data/bad_timesheets.csv')
