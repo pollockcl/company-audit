@@ -74,5 +74,16 @@ class CompanyTest < Minitest::Test
     assert_instance_of Employee, @company.find_employee_by_id(2)
     assert_equal 'John Smith', @company.find_employee_by_id(2).name
     assert_equal 'Engineer', @company.find_employee_by_id(2).role
+    assert_nil @company.find_employee_by_id(99)
+  end
+
+  def test_find_project_by_id
+    file = './data/projects.csv'
+    @company.load_projects(file)
+
+    assert_instance_of Project, @company.find_project_by_id(1)
+    assert_equal 'Widgets',@company.find_project_by_id(1).name
+    assert_instance_of Time, @company.find_project_by_id(1).start_date
+    assert_nil @company.find_project_by_id(5)
   end
 end
