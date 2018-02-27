@@ -17,15 +17,15 @@ class CompanyTest < Minitest::Test
   end
 
   def test_load_employees_method
-    @company.load_employees
+    @company.load_employees('./data/employees.csv')
   end
 
-  def test_load_projects_method
-    @company.load_projects
+  # def test_load_projects_method
+  #   @company.load_projects('./data/projects.csv')
 
-  end
+  # end
 
-  def test_load_timesheets_method
-    @company.load_timesheets
-  end
+  # def test_load_timesheets_method
+  #   @company.load_timesheets('./data/bad_timesheets.csv')
+  # end
 end
