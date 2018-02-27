@@ -44,4 +44,8 @@ class Company
   def valid
     { success: true, error: nil }
   end
+
+  def find_employee_by_id(id)
+    @employees.detect { |employee| employee.id == id }
+  end
 end

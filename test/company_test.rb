@@ -66,4 +66,13 @@ class CompanyTest < Minitest::Test
     assert_equal @company.invalid, @company.load_timesheets(file)
     assert_equal 0, @company.timesheets.size
   end
+
+  def test_find_employee_by_id
+    file = './data/employees.csv'
+    @company.load_employees(file)
+
+    assert_instance_of Employee, @company.find_employee_by_id(2)
+    assert_equal 'John Smith', @company.find_employee_by_id(2).name
+    assert_equal 'Engineer', @company.find_employee_by_id(2).role
+  end
 end
