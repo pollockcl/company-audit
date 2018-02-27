@@ -19,4 +19,9 @@ class AuditTest < Minitest::Test
   def test_load_company_method
     assert_equal @company, @audit.load_company(@company)
   end
+
+  def test_were_invalid_days_worked
+    @audit.load_company(@company)
+    assert 'no invalid days', @audit.were_invalid_days_worked
+  end
 end
