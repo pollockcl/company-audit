@@ -21,5 +21,4 @@ class TimesheetsTest < Minitest::Test
     assert_instance_of Time, @timesheet.date
     assert_equal 120, @timesheet.minutes
   end
-
 end
