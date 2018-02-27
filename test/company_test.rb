@@ -37,7 +37,13 @@ class CompanyTest < Minitest::Test
 
   end
 
-  # def test_load_timesheets_method
-  #   @company.load_timesheets('./data/bad_timesheets.csv')
-  # end
+  def test_load_timesheets_method
+    success    = ->(element) { element[:success] }
+    timesheets = ->(element) { element.is_a?(Timesheets) }
+    file       = './data/timesheets.csv'
+
+    assert @company.load_timesheets(file).all?(&success)
+    assert_equal 25, @company.timesheets.size
+    assert @company.timesheets.all?(&timesheets) 
+  end
 end

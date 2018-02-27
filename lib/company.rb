@@ -1,6 +1,7 @@
 require_relative 'data_analyst'
 require_relative 'employee'
 require_relative 'project'
+require_relative 'timesheets'
 class Company
   attr_reader :employees, :projects, :timesheets
   def initialize
@@ -30,7 +31,13 @@ class Company
   end
 
   def load_timesheets(csv)
-    CSV.readlines(csv, headers: true, header_converter: :symbols)
+    data   = DataAnalyst.find_timesheets(csv)
+    result = []
+    data.map do |attributes|
+      @timesheets << Timesheets.new(attributes.to_h) if valid?(attributes)
+      result << valid?(attributes)
+    end
+    result
   end
 
   def valid?(attributes)
