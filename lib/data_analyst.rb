@@ -5,7 +5,7 @@ class DataAnalyst
   end
 
   def self.find_projects(csv)
-    CSV.readlines(csv, write_headers: true, headers: [:id, :name, :start_date, :end_date])
+    CSV.readlines(csv, write_headers: true, headers: [:project_id, :name, :start_date, :end_date])
   end
 
   def self.find_timesheets(csv)
